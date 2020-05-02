@@ -1,8 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './menu-item.styles.scss';
-const MenuItem = ({ title, imageUrl, size }) => (
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   <div
     className={`${size ? size + ' menu-item' : 'menu-item'}`}
+    onClick={() => history.push(`${match.url}${linkUrl}`)}
     // className={`${size} menu-item`} from udemy-course
   >
     <div
@@ -18,4 +20,4 @@ const MenuItem = ({ title, imageUrl, size }) => (
   </div>
 );
 
-export default MenuItem;
+export default withRouter(MenuItem);
