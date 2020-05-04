@@ -18,9 +18,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   //getting data of firebase database
-  //   console.log(userRef);
+  // console.log('userRef', userRef);
   // getting data of google account
-  //   console.log(userAuth);
+  // console.log(userAuth);
 
   const snapShot = await userRef.get();
   // check whether database has its account information
