@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // connect is HOC which let us modify our component to have access to things related to redux
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
@@ -46,8 +49,8 @@ const Header = ({ currentUser, hidden }) => (
 //   // therefore, value what "state.user.currentUser" points at is a value of a key from an object which get returned by user-reducer
 //   // what suppose reducer should to operate
 // });
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 export default connect(mapStateToProps)(Header);
