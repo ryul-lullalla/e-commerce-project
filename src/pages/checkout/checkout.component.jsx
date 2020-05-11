@@ -1,11 +1,11 @@
 import React from 'react';
-import './checkout.styles.scss';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import styled from 'styled-components';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
-
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import {
   selectCartItems,
@@ -13,39 +13,40 @@ import {
 } from '../../redux/cart/cart.selectors';
 
 const CheckoutPage = ({ cartItems, total }) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
-        <span> Product</span>
-      </div>
-      <div className="header-block">
-        <span> Description</span>
-      </div>
-      <div className="header-block">
-        <span>Quantity </span>
-      </div>
-      <div className="header-block">
-        <span> Price</span>
-      </div>
-      <div className="header-block">
-        <span> Remove</span>
-      </div>
-    </div>
+  <CheckoutPageContainer>
+    <CheckoutHeaderContainer>
+      <HeaderBlockContainer>
+        <span>Product</span>
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
+        <span>Description</span>
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
+        <span>Quantity</span>
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
+        <span>Price</span>
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
+        <span>Remove</span>
+      </HeaderBlockContainer>
+    </CheckoutHeaderContainer>
     {cartItems.map((cartItem) => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
-    <div className="total">
-      <span>TOTAL : ${total}</span>
-    </div>
+
+    <TotalContainer>TOTAL: ${total}</TotalContainer>
     <StripeCheckoutButton price={total} />
-    <span className="testing-card">Payment is for the test mode</span>
-    <span className="testing-card">
-      In order to have a test on a Stripe please use info on the bottom
-    </span>
-    <span className="testing-card">NUMBER : 3782-822463-10005</span>
-    <span className="testing-card">DATE : Any future date</span>
-    <span className="testing-card">CVC : Any 4 digits</span>
-  </div>
+    <WarningMessage>
+      <p className="testing-card">*Payment is for the test mode*</p>
+      <p className="testing-card">
+        *Please use the following test credit card for payments*
+      </p>
+      <p className="testing-card">NUMBER : 3782-822463-10005</p>
+      <p className="testing-card">ExP DATE : Any future date</p>
+      <p className="testing-card">CVC : Any 4 digits</p>
+    </WarningMessage>
+  </CheckoutPageContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
@@ -54,3 +55,50 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps)(CheckoutPage);
+
+const CheckoutPageContainer = styled.div`
+  width: 55%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+
+  button {
+    margin-left: auto;
+    margin-top: 50px;
+  }
+`;
+
+const CheckoutHeaderContainer = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid darkgrey;
+`;
+
+const HeaderBlockContainer = styled.div`
+  text-transform: capitalize;
+  width: 23%;
+
+  &:last-child {
+    width: 8%;
+  }
+`;
+
+const TotalContainer = styled.div`
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
+`;
+
+const CheckoutPageFooter = styled.div`
+  display: block;
+`;
+
+const WarningMessage = styled.div`
+  text-align: center;
+  color: red;
+  margin: 5px 0;
+`;

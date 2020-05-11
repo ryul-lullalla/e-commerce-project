@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 
 import {
@@ -7,30 +6,26 @@ import {
   adjustItemQuantity,
 } from '../../redux/cart/cart.actions';
 
-import './checkout-item.styles.scss';
+import styled from 'styled-components';
 
 const CheckoutItem = ({ cartItem, clearItem, adjustItemQuantity }) => {
-  const { name, imageUrl, quantity, price } = cartItem;
+  const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <div className="checkout-item">
-      <div className="image-container">
-        <img alt="item" src={imageUrl} />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={() => adjustItemQuantity(cartItem, -1)}>
-          &#10094;
-        </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => adjustItemQuantity(cartItem, +1)}>
-          &#10095;
-        </div>
-      </span>
-      <span className="price">{price}</span>
-      <div className="remove-button" onClick={() => clearItem(cartItem)}>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <img src={imageUrl} alt="item" />
+      </ImageContainer>
+      <TextContainer>{name}</TextContainer>
+      <QuantityContainer>
+        <div onClick={() => adjustItemQuantity(cartItem, -1)}>&#10094;</div>
+        <span>{quantity}</span>
+        <div onClick={() => adjustItemQuantity(cartItem, +1)}>&#10095;</div>
+      </QuantityContainer>
+      <TextContainer>{price}</TextContainer>
+      <RemoveButtonContainer onClick={() => clearItem(cartItem)}>
         &#10005;
-      </div>
-    </div>
+      </RemoveButtonContainer>
+    </CheckoutItemContainer>
   );
 };
 
@@ -40,3 +35,44 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(adjustItemQuantity(item, adjust)),
 });
 export default connect(null, mapDispatchToProps)(CheckoutItem);
+
+const CheckoutItemContainer = styled.div`
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
+  align-items: center;
+`;
+
+const ImageContainer = styled.div`
+  width: 23%;
+  padding-right: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const TextContainer = styled.span`
+  width: 23%;
+`;
+
+const QuantityContainer = styled(TextContainer)`
+  display: flex;
+
+  span {
+    margin: 0 10px;
+  }
+
+  div {
+    cursor: pointer;
+  }
+`;
+
+const RemoveButtonContainer = styled.div`
+  padding-left: 12px;
+  cursor: pointer;
+`;
