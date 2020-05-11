@@ -16,4 +16,6 @@ export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 export const persistor = persistStore(store);
 
 export default { store, persistor };
-console.log(store.getState());
+
+process.env.NODE_ENV === 'development' && console.log(store.getState());
+console.log(process.env.NODE_ENV);
