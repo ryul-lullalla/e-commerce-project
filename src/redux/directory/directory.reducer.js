@@ -2,8 +2,6 @@ import DIRECTORY_DATA from '../../data/directory.data';
 
 const INITIAL_STATE = DIRECTORY_DATA;
 
-console.log(INITIAL_STATE);
-
 const directoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     default:
