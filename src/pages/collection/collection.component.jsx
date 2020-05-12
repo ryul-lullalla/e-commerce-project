@@ -26,6 +26,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps)(CollectionPage);
+
 const CollectionPageContainer = styled.div`
   display: flex;
   flex-direction: column;
