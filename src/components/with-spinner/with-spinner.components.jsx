@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 // const WithSpinner = (WrappedComponent) => {
 //   const Spinner = ({ isLoading, ...otherProps }) => {
+//     console.log(isLoading);
 //     return isLoading ? (
 //       <SpinnerOverlay>
 //         <SpinnerContainer />
@@ -22,16 +23,14 @@ import styled from 'styled-components';
 //   return Spinner;
 // };
 
-const WithSpinner = (WrappedComponent) => ({
-  isCollectionDataFetched,
-  ...otherProps
-}) => {
-  return isCollectionDataFetched ? (
-    <WrappedComponent {...otherProps} />
-  ) : (
+const WithSpinner = (WrappedComponent) => ({ isLoading, ...otherProps }) => {
+  console.log(isLoading);
+  return isLoading ? (
     <SpinnerOverlay>
       <SpinnerContainer />
     </SpinnerOverlay>
+  ) : (
+    <WrappedComponent {...otherProps} />
   );
 };
 

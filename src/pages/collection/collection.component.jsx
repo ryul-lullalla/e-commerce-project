@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
+  console.log('collectionPage');
   return (
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>
