@@ -1,16 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const FormInput = ({ handleChange, label, ...props }) => (
-  <GroupContainer>
-    <FormInputContainer onChange={handleChange} {...props} />
-    {label ? (
-      <FormInputLabel className={props.value.length ? 'shrink' : ''}>
-        {label}
-      </FormInputLabel>
-    ) : null}
-  </GroupContainer>
-);
+const FormInput = ({ handleChange, label, value, ...props }) => {
+  return (
+    <GroupContainer>
+      <FormInputContainer onChange={handleChange} value={value} {...props} />
+      {label ? (
+        <FormInputLabel className={value && value.length ? 'shrink' : ''}>
+          {label}
+        </FormInputLabel>
+      ) : null}
+    </GroupContainer>
+  );
+};
 export default FormInput;
 
 const subColor = 'grey';

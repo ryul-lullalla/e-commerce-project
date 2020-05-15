@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+
+import { emailSignInStart } from '../../redux/user/user.actions';
 
 import styled from 'styled-components';
 
@@ -21,6 +25,7 @@ class SignUp extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { displayName, email, password, confirmPassword } = this.state;
+    const { emailSignInStart } = this.props;
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
@@ -31,6 +36,7 @@ class SignUp extends React.Component {
         password,
       );
       await createUserProfileDocument(user, { displayName });
+      await emailSignInStart(email, password);
       this.setState({
         displayName: '',
         email: '',
@@ -51,6 +57,8 @@ class SignUp extends React.Component {
 
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
+    const { currentInput, onChangeSignIn, history } = this.props;
+    console.log(this.props.history);
     return (
       <SignUpContainer>
         <SignUpTitle>I do not have a account</SignUpTitle>
@@ -85,6 +93,7 @@ class SignUp extends React.Component {
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
+            value={confirmPassword}
             label="Confirm Password"
             required
           />
@@ -95,7 +104,12 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  emailSignInStart: (email, password) =>
+    dispatch(emailSignInStart({ email, password })),
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));
 
 const SignUpContainer = styled.div`
   display: flex;
