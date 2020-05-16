@@ -27,4 +27,6 @@ export default connect(mapStateToProps)(CollectionsOverview);
 const CollectionsOverviewContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
+  padding-top: 62px;
 `;

@@ -70,15 +70,23 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 const HeaderContainer = styled.div`
-  height: 70px;
-  width: 100%;
+  height: 108px;
+  width: 93%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  z-index: 1;
   @media screen and (max-width: 800px) {
     height: 60px;
     padding: 10px;
     margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 1;
   }
 `;
 

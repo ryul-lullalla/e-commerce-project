@@ -63,13 +63,14 @@ const CheckoutPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+  padding-top: 80px;
 
   button {
     margin-left: auto;
     margin-top: 50px;
   }
   @media screen and (max-width: 800px) {
-    width: 90%;
+    width: 80%;
   }
 `;
 

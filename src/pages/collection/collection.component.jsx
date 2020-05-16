@@ -31,6 +31,8 @@ export default connect(mapStateToProps)(CollectionPage);
 const CollectionPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
+  padding-top: 80px;
 `;
 
 const CollectionTitle = styled.h2`

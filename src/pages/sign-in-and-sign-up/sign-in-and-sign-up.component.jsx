@@ -30,4 +30,10 @@ const SignInAndSignUpContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px auto;
+  padding-top: 60px;
+  @media screen and (max-width: 800px) {
+    flex-wrap: wrap;
+    width: unset;
+    padding-top: 40px;
+  }
 `;
