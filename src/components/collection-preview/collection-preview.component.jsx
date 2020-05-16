@@ -20,10 +20,15 @@ const CollectionPreview = ({ title, items, history, match, routeName }) => (
 );
 
 export default withRouter(CollectionPreview);
+
 const CollectionPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  @media screen and (max-width: 800px) {
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const TitleContainer = styled.h1`
@@ -39,4 +44,8 @@ const TitleContainer = styled.h1`
 const PreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 800px) {
+    flex-wrap: wrap;
+    width: 90%;
+  }
 `;

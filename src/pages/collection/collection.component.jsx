@@ -46,4 +46,10 @@ const CollectionItemsContainer = styled.div`
   & > div {
     margin-bottom: 30px;
   }
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
 `;

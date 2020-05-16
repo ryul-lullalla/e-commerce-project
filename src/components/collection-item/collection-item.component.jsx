@@ -48,6 +48,18 @@ const CollectionItemContainer = styled.div`
       display: flex;
     }
   }
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+    margin: 20px 0;
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+      button {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 const AddButton = styled(CustomButton)`
@@ -56,6 +68,12 @@ const AddButton = styled(CustomButton)`
   position: absolute;
   top: 255px;
   display: none;
+  @media screen and (max-width: 800px) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px 0 10px;
+  }
 `;
 
 const BackgroundImage = styled.div`
@@ -83,4 +101,5 @@ const NameContainer = styled.span`
 const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
+  width: 90%;
 `;

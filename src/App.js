@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createGlobalStyle } from 'styled-components';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-
 import Header from './components/header/header.component';
 
 import { createStructuredSelector } from 'reselect';
@@ -52,6 +51,7 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -80,3 +80,22 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+const GlobalStyle = createGlobalStyle`
+body {
+  font-family: 'Open Sans Condensed';
+  padding: 20px 40px;
+
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+  }
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+* {
+  box-sizing: border-box;
+}
+
+`;
