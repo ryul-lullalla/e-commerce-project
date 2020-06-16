@@ -11,7 +11,8 @@ import CollectionPageContainer from '../collection/collection.container';
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
     fetchCollectionsStart();
-  }, [fetchCollectionsStart]);
+  }, [fetchCollectionsStart]);  
+  console.log(match.path, 'allalalalla');
   // componentDidMount() {
   //   // const { updateCollections } = this.props;
   //   // const collectionRef = firestore.collection('collections');
@@ -38,11 +39,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 
   return (
     <div className="shop-page">
-      <Route
-        exact
-        path={`${match.path}`}
-        component={CollectionsOverviewContainer}
-      />
+      <Route exact path={match.path} component={CollectionsOverviewContainer} />
       <Route
         path={`${match.path}/:collectionId`}
         component={CollectionPageContainer}

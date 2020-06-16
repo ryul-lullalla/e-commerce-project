@@ -20,7 +20,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   //getting data of firebase database
   // console.log('userRef', userRef);
-  // getting data of google account
+  // getting data of google account  
   // console.log(userAuth);
 
   const snapShot = await userRef.get();
@@ -68,6 +68,7 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       title,
     };
   });
+  console.log("transformedCollection",transformedCollection)
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
@@ -79,7 +80,7 @@ export const getCurrentUser = () => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       unsubscribe();
       resolve(userAuth);
-    }, reject);
+    }, reject);   
   });
 };
 
@@ -91,3 +92,4 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
+
